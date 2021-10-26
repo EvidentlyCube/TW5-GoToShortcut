@@ -1,0 +1,68 @@
+
+body.ec-goto-active {
+    overflow: hidden;
+}
+
+#ec-goto {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#ec-goto-modal {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.8);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(  45deg,  rgba(255, 255, 255, 0.9),  rgba(255, 255, 255, 0.9) 10px,  rgba(255, 255, 255, 0.85) 10px,  rgba(255, 255, 255, 0.85) 20px);
+}
+#ec-goto-body {
+    background: white;
+    border: 1px black solid;
+    z-index: 1;
+    padding: 1em 2em;
+    min-width: 600px;
+}
+#ec-goto-input {
+    width: 100%;
+}
+#ec-goto-results {
+    padding: 0;
+}
+
+#ec-goto-results li {
+    list-style: none;
+    padding: 0.2em 1em;
+}
+
+#ec-goto-results li.selected {
+    background: #CCF;
+}
+
+#ec-goto-results li.hidden {
+    visibility: hidden;
+}
+#ec-goto-results li header{
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
+#ec-goto-results li aside{
+    font-size: 0.8em;
+    color: #666;
+}
+
+#ec-goto-results li.more-up,
+#ec-goto-results li.more-down {
+    text-align: center;
+    font-size: 2em;
+    color: #888;
+}

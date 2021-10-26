@@ -1,0 +1,15 @@
+created: 20211019091348515
+modified: 20211019093915728
+tags: 
+title: $:/plugins/EvidentlyCube/GoToShortcut/readme
+type: text/vnd.tiddlywiki
+
+[[Github|https://github.com/EvidentlyCube/TW5-GoToShortcut]]
+
+----
+
+Adds a keyboard shortcut that opens a modal window, where you can quickly navigate to a specific tiddler.
+
+! Example:
+
+Press `Ctrl + Shift + P` to open the modal and start typing to search for tiddlers.

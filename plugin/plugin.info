@@ -1,0 +1,10 @@
+{
+    "title": "$:/plugins/EvidentlyCube/GoToShortcut",
+    "version": "0.0.4",
+    "core-version": ">=5.2.0",
+    "description": "A keyboard shortcut to open a modal where you can quickly and easily find and go to a tiddler.",
+    "author": "Maurycy Zarzycki",
+    "source": "https://github.com/EvidentlyCube/TW5-GoToShortcut",
+    "plugin-type": "plugin",
+    "list": "readme license history"
+}
