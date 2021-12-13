@@ -1,17 +1,11 @@
-# TiddlyWiki5 Plugin - Auto Close Tags
+# Go To Tiddler Shortcut [TiddlyWiki5 Plugin]
 
-Automatically close HTML tags as you type. ''Does not work with ~CodeMirror!''
+Adds a keyboard shortcut (`Ctrl+Shift+P` by default) that opens a modal window, where you can quickly navigate to a specific tiddler.
 
-* Works with `<$widgets>`.
-* Does not trigger for `<<macroCalls>>`.
-* Does not trigger for `<self-closed/>` tags.
-* Does not trigger for empty `<>` tags.
-* Does not trigger for elements: `<br>`, `<input>`, `<hr>` and `<img>`
+## Demo:
 
-## Demo
+See the demo [here](https://evidentlycube.github.io/TW5-PluginShowcase/#Go%20To%20Shortcut).
 
-todo
+## Installation:
 
-## Installation
-
-todo
+Drag [this link](https://evidentlycube.github.io/TW5-PluginShowcase/#%24%3A%2Fplugins%2FEvidentlyCube%2FGoToShortcut) into your TiddlyWiki 5 page/tab.
