@@ -1,0 +1,244 @@
+tags: $:/tags/BelowStory
+title: $:/plugins/EvidentlyCube/GoToShortcut/Core
+type: text/vnd.tiddlywiki
+
+\define tooShort()
+//Search too short.//
+\end
+
+\define action-navigate-up()
+<$let selected={{$:/plugins/EvidentlyCube/GoToShortcut/Data!!selected}} count={{$:/plugins/EvidentlyCube/GoToShortcut/Data!!results-count}}>
+  <$action-setfield
+    $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Data"
+    selected={{{ [<selected>subtract[2]add<count>remainder<count>add[1]] }}}/>
+</$let>
+\end
+
+\define action-navigate-down()
+<$let selected={{$:/plugins/EvidentlyCube/GoToShortcut/Data!!selected}} count={{$:/plugins/EvidentlyCube/GoToShortcut/Data!!results-count}}>
+  <$action-setfield
+    $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Data"
+    selected={{{ [<selected>remainder<count>add[1]] }}}/>
+</$let>
+\end
+
+\define action-navigate-close()
+  <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Data" active="0"/>
+\end
+
+\define action-navigate-select()
+  <$let results={{$:/plugins/EvidentlyCube/GoToShortcut/Data!!results}} selected={{$:/plugins/EvidentlyCube/GoToShortcut/Data!!selected}}>
+  <$list filter="[enlist<results>nth<selected>]">
+    <$action-navigate to=<<currentTiddler>> $scroll="yes"/>
+    <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Data" active="0"/>
+  </$list>
+  </$let>
+\end
+
+\define action-search-changed(reset:no)
+<$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Data" $field="selected" $value="1"/>
+
+<$let
+    reset=<<__reset__>>
+    lookupSource={{$:/plugins/EvidentlyCube/GoToShortcut/Data!!lookup}}
+    lookup={{{ [<reset>compare:string:eq[yes]then[]] [<lookupSource>] +[nth[1]] }}}
+    mode={{{ [<lookup>prefix[>*]then[system-deep]]
+             [<lookup>prefix[>]then[system]]
+             [<lookup>prefix[!*]then[all-deep]]
+             [<lookup>prefix[!]then[all]]
+             [<lookup>prefix[*]then[normal-deep]]
+             [[normal]] }}}
+    query={{{ [<lookup>removeprefix[>*]]
+              [<lookup>removeprefix[>]]
+              [<lookup>removeprefix[!*]]
+              [<lookup>removeprefix[!]]
+              [<lookup>removeprefix[*]]
+              [<lookup>] }}}
+>
+<$list filter="[<mode>compare:string:eq[system-deep]]">
+    <<action-save-results "header-system-deep" "filter-system-deep">>
+</$list>
+<$list filter="[<mode>compare:string:eq[system]]">
+    <<action-save-results "header-system" "filter-system">>
+</$list>
+<$list filter="[<mode>compare:string:eq[all-deep]]">
+    <<action-save-results "header-all-deep" "filter-all-deep">>
+</$list>
+<$list filter="[<mode>compare:string:eq[all]]">
+    <<action-save-results "header-all" "filter-all">>
+</$list>
+<$list filter="[<mode>compare:string:eq[normal-deep]]">
+    <<action-save-results "header-normal-deep" "filter-normal-deep">>
+</$list>
+<$list filter="[<mode>compare:string:eq[normal]]">
+    <<action-save-results "header-normal" "filter-normal">>
+</$list>
+</$let>
+
+\end
+
+\define action-save-results(header filter)
+<$let header=<<__header__>> filter-name=<<__filter__>> filter={{{ [[$:/plugins/EvidentlyCube/GoToShortcut/Config]get<filter-name>] }}}>
+<$set name="results" filter=<<filter>>>
+  <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Data"
+     header={{{ [[$:/plugins/EvidentlyCube/GoToShortcut/Config]get<header>] }}}
+     results=<<results>>
+     results-count={{{ [enlist<results>count[]] }}}
+     />
+</$set>
+</$let>
+\end
+
+\define show-results()
+<$set name="results" value={{$:/plugins/EvidentlyCube/GoToShortcut/Data!!results}}>
+<$let
+    limit="5"
+    halfLimit={{{ [<limit>divide[2]ceil[]] }}}
+    count={{$:/plugins/EvidentlyCube/GoToShortcut/Data!!results-count}}
+    maxOffset={{{ [<count>subtract<limit>] }}}
+    selected={{$:/plugins/EvidentlyCube/GoToShortcut/Data!!selected}}
+    offset={{{ [<selected>subtract<halfLimit>min<maxOffset>max[0]] }}}>
+<div class="lookup-row meta">
+  <$list filter="[<offset>compare:number:gt[0]]">
+  //(<$text text=<<offset>>/> more)//
+  </$list>
+</div>
+<$list filter="[enlist<results>rest<offset>first<limit>]" counter="counter">
+  <$let classes={{{ [<counter>add<offset>compare:string:eq<selected>then[selected]] }}}>
+  {{||$:/plugins/EvidentlyCube/GoToShortcut/Template}}
+  </$let>
+</$list>
+<div class="lookup-row meta">
+  <$list filter="[<offset>compare:number:lt<maxOffset>]">
+  //(<$text text={{{ [<maxOffset>subtract<offset>] }}}/> more)//
+  </$list>
+</div>
+<$list filter="[<count>compare:number:eq[0]]">
+<div class="lookup-row meta">
+  //(No results)//
+</div>
+</$list>
+
+</$let>
+</$set>
+
+\end
+
+<style>
+.lookup-wrapper {
+    background: rgba(255, 255, 255, 0.7);
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+.close-modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+.lookup {
+    background: white;
+    border: 1px solid black;
+    margin: 2em;
+    width: 600px;
+    padding: 1em;
+    box-sizing: border-box;
+}
+.lookup input {
+    width: 100%;
+}
+.lookup-row {
+    height: 52px;
+    overflow: hidden;
+    padding: 0.5em 1em;
+}
+.lookup-row header {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.2em
+}
+.lookup-row ul {
+    margin: 0;
+    list-style: none;
+    opacity: 0.75;
+}
+.lookup-row li {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 14px;
+    opacity: 0.75;
+}
+.lookup-row header {
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.lookup-row .lookup-tags {
+    height: 26px;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.lookup-row .lookup-tags .tc-tag-list-item {
+    margin-right: 0.5em;
+}
+
+.lookup-row.selected {
+    background: #DDF;
+}
+.lookup-row:not(.meta):hover {
+    background: #EEF;
+    cursor: pointer;
+}
+.lookup-row.meta {
+    color: #AAA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    height: 20px
+}
+</style>
+
+<$list filter="[[$:/plugins/EvidentlyCube/GoToShortcut/Data]field:active[1]]">
+<div class="lookup-wrapper">
+<$button tag="div" class="close-modal">
+<$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Data" active="0"/>
+</$button>
+<div class="lookup">
+
+! <$text text={{$:/plugins/EvidentlyCube/GoToShortcut/Data!!header}} />:
+
+<$keyboard key="Down" actions=<<action-navigate-down>>>
+<$keyboard key="Up" actions=<<action-navigate-up>>>
+<$keyboard key="Enter" actions=<<action-navigate-select>>>
+<$keyboard key="Escape" actions=<<action-navigate-close>>>
+<$edit-text
+  tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Data"
+  field="lookup"
+  placeholder="Input tiddler name here"
+  focus="yes"
+  inputActions=<<action-search-changed>>/>
+</$keyboard>
+</$keyboard>
+</$keyboard>
+</$keyboard>
+
+<<show-results>>
+
+</div>
+</div>
+</$list>

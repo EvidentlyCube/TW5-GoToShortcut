@@ -1,0 +1,13 @@
+title: $:/plugins/EvidentlyCube/GoToShortcut/Config
+header-system-deep: Search in any tiddler
+filter-system-deep: [all[tiddlers+shadows]search:title:literal<query>sort[]] [all[tiddlers+shadows]search:title:words<query>sort[]] [all[tiddlers+shadow]search:text:literal<query>sort[]] [all[tiddlers+shadow]search:text:words<query>sort[]]
+header-system: Go to any tiddler
+filter-system: [all[tiddlers+shadows]search:title:literal<query>sort[]] [all[tiddlers+shadows]search:title:words<query>sort[]]
+header-all-deep: Search in tiddlers (include hidden)
+filter-all-deep: [all[tiddlers]search:title:literal<query>sort[]] [all[tiddlers]search:title:words<query>sort[]] [all[tiddlers]search:text:literal<query>sort[]] [all[tiddlers]search:text:words<query>sort[]]
+header-all:Go to tiddler (include hidden)
+filter-all: [all[tiddlers]search:title:literal<query>sort[]] [all[tiddlers]search:title:words<query>sort[]]
+header-normal-deep:Search in tiddlers
+filter-normal-deep: [all[tiddlers]search:title:literal<query>sort[]] [all[tiddlers]search:title:words<query>sort[]] [all[tiddlers]search:text:literal<query>sort[]] [all[tiddlers]search:text:words<query>sort[]] +[!is[draft]!prefix[$:/]field:lookup-ignore[]]
+header-normal: Go to tiddler
+filter-normal: [all[tiddlers]search:title:literal<query>sort[]] [all[tiddlers]search:title:words<query>sort[]] +[!is[draft]!prefix[$:/]field:lookup-ignore[]]
