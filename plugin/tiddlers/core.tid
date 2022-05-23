@@ -37,7 +37,6 @@ type: text/vnd.tiddlywiki
 
 \define action-search-changed(reset:no)
 <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Data" $field="selected" $value="1"/>
-
 <$let
     reset=<<__reset__>>
     lookupSource={{$:/plugins/EvidentlyCube/GoToShortcut/Data!!lookup}}
