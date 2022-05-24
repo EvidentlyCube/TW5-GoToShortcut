@@ -36,7 +36,6 @@ type: text/vnd.tiddlywiki
 \end
 
 \define action-search-changed(reset:no)
-<$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store" $field="selected" $value="1"/>
 <$let
     reset=<<__reset__>>
     lookupSource={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!lookup}}
@@ -54,36 +53,25 @@ type: text/vnd.tiddlywiki
               [<lookup>removeprefix[*]]
               [<lookup>] }}}
 >
-<$list filter="[<mode>compare:string:eq[system-deep]]">
-    <<action-save-results "header-system-deep" "filter-system-deep">>
-</$list>
-<$list filter="[<mode>compare:string:eq[system]]">
-    <<action-save-results "header-system" "filter-system">>
-</$list>
-<$list filter="[<mode>compare:string:eq[all-deep]]">
-    <<action-save-results "header-all-deep" "filter-all-deep">>
-</$list>
-<$list filter="[<mode>compare:string:eq[all]]">
-    <<action-save-results "header-all" "filter-all">>
-</$list>
-<$list filter="[<mode>compare:string:eq[normal-deep]]">
-    <<action-save-results "header-normal-deep" "filter-normal-deep">>
-</$list>
-<$list filter="[<mode>compare:string:eq[normal]]">
-    <<action-save-results "header-normal" "filter-normal">>
-</$list>
+  <$macrocall $name="action-save-results" mode=<<mode>>  query=<<query>>/>
 </$let>
 
 \end
 
-\define action-save-results(header filter)
-<$let header=<<__header__>> filter-name=<<__filter__>> filter={{{ [[$:/plugins/EvidentlyCube/GoToShortcut/Config]get<filter-name>] }}}>
-<$set name="results" filter=<<filter>>>
-  <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
-     header={{{ [[$:/plugins/EvidentlyCube/GoToShortcut/Config]get<header>] }}}
-     results=<<results>>
-     results-count={{{ [enlist<results>count[]] }}}
-     />
+\define action-save-results(mode query)
+<$let
+    mode=<<__mode__>>
+    header={{{ [<mode>addprefix[header-]] }}}
+    filter-name={{{ [<mode>addprefix[filter-]] }}}
+    query=<<__query__>>
+    filter={{{ [[$:/plugins/EvidentlyCube/GoToShortcut/Config]get<filter-name>] }}}>
+  <$set name="results" filter=<<filter>>>
+    <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
+      header={{{ [[$:/plugins/EvidentlyCube/GoToShortcut/Config]get<header>] }}}
+      results=<<results>>
+      results-count={{{ [enlist<results>count[]] }}}
+      selected=1
+    />
 </$set>
 </$let>
 \end
