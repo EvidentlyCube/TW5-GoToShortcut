@@ -10,5 +10,5 @@ title: $:/plugins/EvidentlyCube/GoToShortcut/Template
 </ul>
 
 <$action-navigate to=<<currentTiddler>> $scroll="yes"/>
-<$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Data" active="0"/>
+<$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store" active="0"/>
 </$button>
