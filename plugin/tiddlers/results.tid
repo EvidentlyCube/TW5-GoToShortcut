@@ -14,20 +14,23 @@ type: text/vnd.tiddlywiki
   //(<$text text=<<offset>>/> more)//
   </$list>
 </div>
-<$list filter="[enlist<results>rest<offset>first<limit>]" counter="counter">
-  <$let classes={{{ [<counter>add<offset>compare:string:eq<selected>then[selected]] }}}>
-  {{||$:/plugins/EvidentlyCube/GoToShortcut/ResultRow}}
-  </$let>
-</$list>
+<div class="rows">
+  <$list filter="[enlist<results>rest<offset>first<limit>]" counter="counter" emptyMessage="""
+  <div class="row meta no-results">
+  No results
+  </div>
+  """>
+    <$let classes={{{ [<counter>add<offset>compare:string:eq<selected>then[selected]] }}}>
+    {{||$:/plugins/EvidentlyCube/GoToShortcut/ResultRow}}
+    </$let>
+  </$list>
+</div>
 <div class="row meta">
   <$list filter="[<offset>compare:number:lt<maxOffset>]">
   //(<$text text={{{ [<maxOffset>subtract<offset>] }}}/> more)//
   </$list>
 </div>
 <$list filter="[<count>compare:number:eq[0]]">
-<div class="row meta">
-  //(No results)//
-</div>
 </$list>
 
 </$let>
