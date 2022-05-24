@@ -69,7 +69,9 @@ type: text/vnd.tiddlywiki
     reset=<<__reset__>>
     lookupSource={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!lookup}}
     lookup={{{ [<reset>compare:string:eq[yes]then[]] [<lookupSource>] +[nth[1]] }}}
-    mode={{{ [<lookup>prefix[>*]then[system-deep]]
+    filter-start="["
+    mode={{{ [<lookup>prefix<filter-start>then[filter]]
+             [<lookup>prefix[>*]then[system-deep]]
              [<lookup>prefix[>]then[system]]
              [<lookup>prefix[!*]then[all-deep]]
              [<lookup>prefix[!]then[all]]
@@ -94,6 +96,17 @@ type: text/vnd.tiddlywiki
     filter-name={{{ [<mode>addprefix[filter-]] }}}
     query=<<__query__>>
     filter={{{ [[$:/plugins/EvidentlyCube/GoToShortcut/Config]get<filter-name>] }}}>
+
+  <$list filter="[<mode>compare:string:ne[filter]]" emptyMessage="""
+    <$set name="results" filter=<<query>>>
+      <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
+        header={{{ [[$:/plugins/EvidentlyCube/GoToShortcut/Config]get<header>] }}}
+        results=<<results>>
+        results-count={{{ [enlist<results>count[]] }}}
+        selected=1
+      />
+    </$set>
+  """>
   <$set name="results" filter=<<filter>>>
     <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
       header={{{ [[$:/plugins/EvidentlyCube/GoToShortcut/Config]get<header>] }}}
@@ -102,6 +115,7 @@ type: text/vnd.tiddlywiki
       selected=1
     />
   </$set>
+  </$list>
 </$let>
 \end
 
