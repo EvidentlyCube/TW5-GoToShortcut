@@ -1,4 +1,4 @@
-.lookup-wrapper {
+.ec-goto_modal {
     background: rgba(255, 255, 255, 0.7);
     position: fixed;
     right: 0;
@@ -10,7 +10,7 @@
     align-items: center;
     z-index: 10000;
 }
-.close-modal {
+.ec-goto_close {
     position: fixed;
     left: 0;
     top: 0;
@@ -18,7 +18,7 @@
     bottom: 0;
     z-index: -1;
 }
-.lookup {
+.ec-goto_modal .core {
     background: white;
     border: 1px solid black;
     margin: 2em;
@@ -26,25 +26,25 @@
     padding: 1em;
     box-sizing: border-box;
 }
-.lookup input {
+.ec-goto_modal input {
     width: 100%;
 }
-.lookup-row {
+.ec-goto_modal .row {
     height: 52px;
     overflow: hidden;
     padding: 0.5em 1em;
 }
-.lookup-row header {
+.ec-goto_modal .row header {
     margin: 0;
     font-weight: bold;
     font-size: 1.2em
 }
-.lookup-row ul {
+.ec-goto_modal .row ul {
     margin: 0;
     list-style: none;
     opacity: 0.75;
 }
-.lookup-row li {
+.ec-goto_modal .row li {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -52,31 +52,31 @@
     line-height: 14px;
     opacity: 0.75;
 }
-.lookup-row header {
+.ec-goto_modal .row header {
     display: block;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
-.lookup-row .lookup-tags {
+.ec-goto_modal .row .lookup-tags {
     height: 26px;
     display: block;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
-.lookup-row .lookup-tags .tc-tag-list-item {
+.ec-goto_modal .row .lookup-tags .tc-tag-list-item {
     margin-right: 0.5em;
 }
 
-.lookup-row.selected {
+.ec-goto_modal .row.selected {
     background: #DDF;
 }
-.lookup-row:not(.meta):hover {
+.ec-goto_modal .row:not(.meta):hover {
     background: #EEF;
     cursor: pointer;
 }
-.lookup-row.meta {
+.ec-goto_modal .row.meta {
     color: #AAA;
     display: flex;
     align-items: center;

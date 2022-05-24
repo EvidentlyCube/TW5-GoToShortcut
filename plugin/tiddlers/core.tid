@@ -3,18 +3,17 @@ type: text/vnd.tiddlywiki
 tags: $:/tags/BelowStory
 
 <$list filter="[[$:/plugins/EvidentlyCube/GoToShortcut/Store]field:active[1]]">
-<div class="lookup-wrapper">
-<$button tag="div" class="close-modal">
-<$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store" active="0"/>
-</$button>
-<div class="lookup">
+<div class="ec-goto_modal">
+  <$button tag="div" class="ec-goto_close">
+    <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store" active="0"/>
+  </$button>
+  <div class="core">
 
-! <$text text={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!header}} />:
+  ! <$text text={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!header}} />:
 
-{{$:/plugins/EvidentlyCube/GoToShortcut/Input}}
+  {{$:/plugins/EvidentlyCube/GoToShortcut/Input}}
+  {{$:/plugins/EvidentlyCube/GoToShortcut/Results}}
 
-{{$:/plugins/EvidentlyCube/GoToShortcut/Results}}
-
-</div>
+  </div>
 </div>
 </$list>

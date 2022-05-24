@@ -9,23 +9,23 @@ type: text/vnd.tiddlywiki
     maxOffset={{{ [<count>subtract<limit>] }}}
     selected={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!selected}}
     offset={{{ [<selected>subtract<halfLimit>min<maxOffset>max[0]] }}}>
-<div class="lookup-row meta">
+<div class="row meta">
   <$list filter="[<offset>compare:number:gt[0]]">
   //(<$text text=<<offset>>/> more)//
   </$list>
 </div>
 <$list filter="[enlist<results>rest<offset>first<limit>]" counter="counter">
   <$let classes={{{ [<counter>add<offset>compare:string:eq<selected>then[selected]] }}}>
-  {{||$:/plugins/EvidentlyCube/GoToShortcut/Template}}
+  {{||$:/plugins/EvidentlyCube/GoToShortcut/ResultRow}}
   </$let>
 </$list>
-<div class="lookup-row meta">
+<div class="row meta">
   <$list filter="[<offset>compare:number:lt<maxOffset>]">
   //(<$text text={{{ [<maxOffset>subtract<offset>] }}}/> more)//
   </$list>
 </div>
 <$list filter="[<count>compare:number:eq[0]]">
-<div class="lookup-row meta">
+<div class="row meta">
   //(No results)//
 </div>
 </$list>

@@ -1,0 +1,7 @@
+title: $:/plugins/EvidentlyCube/GoToShortcut/ResultRow
+
+<$button tag="div" class={{{ [<classes>addprefix[row ]] }}}>
+    <$transclude tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Template"/>
+    <$action-navigate to=<<currentTiddler>> $scroll="yes"/>
+    <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store" active="0"/>
+</$button>
