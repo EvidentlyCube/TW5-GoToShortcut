@@ -1,0 +1,34 @@
+title: $:/plugins/EvidentlyCube/GoToShortcut/Results
+type: text/vnd.tiddlywiki
+
+<$set name="results" value={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results}}>
+<$let
+    limit="5"
+    halfLimit={{{ [<limit>divide[2]ceil[]] }}}
+    count={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results-count}}
+    maxOffset={{{ [<count>subtract<limit>] }}}
+    selected={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!selected}}
+    offset={{{ [<selected>subtract<halfLimit>min<maxOffset>max[0]] }}}>
+<div class="lookup-row meta">
+  <$list filter="[<offset>compare:number:gt[0]]">
+  //(<$text text=<<offset>>/> more)//
+  </$list>
+</div>
+<$list filter="[enlist<results>rest<offset>first<limit>]" counter="counter">
+  <$let classes={{{ [<counter>add<offset>compare:string:eq<selected>then[selected]] }}}>
+  {{||$:/plugins/EvidentlyCube/GoToShortcut/Template}}
+  </$let>
+</$list>
+<div class="lookup-row meta">
+  <$list filter="[<offset>compare:number:lt<maxOffset>]">
+  //(<$text text={{{ [<maxOffset>subtract<offset>] }}}/> more)//
+  </$list>
+</div>
+<$list filter="[<count>compare:number:eq[0]]">
+<div class="lookup-row meta">
+  //(No results)//
+</div>
+</$list>
+
+</$let>
+</$set>
