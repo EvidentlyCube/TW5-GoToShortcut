@@ -12,7 +12,6 @@ type: text/vnd.tiddlywiki
     maxOffset={{{ [<count>subtract<limit>] }}}
     selected={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!selected}}
     offset={{{ [<selected>subtract<halfLimit>min<maxOffset>max[0]] }}}>
-    <<template>>
 <div class="row meta">
   <$list filter="[<offset>compare:number:gt[0]]">
   //(<$text text=<<offset>>/> more)//
