@@ -17,6 +17,40 @@ type: text/vnd.tiddlywiki
 </$let>
 \end
 
+\define action-navigate-pageup()
+<$let
+    selected={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!selected}}
+    count={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results-count}}
+    limit={{$:/plugins/EvidentlyCube/GoToShortcut/Config!!rows}}>
+  <$action-setfield
+    $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
+    selected={{{ [<selected>compare:number:eq[1]then<count>] ~[<selected>subtract<limit>max[1]] }}}/>
+</$let>
+\end
+
+\define action-navigate-pagedown()
+<$let
+    selected={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!selected}}
+    count={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results-count}}
+    limit={{$:/plugins/EvidentlyCube/GoToShortcut/Config!!rows}}>
+  <$action-setfield
+    $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
+    selected={{{ [<selected>compare:number:eq<count>then[1]] ~[<selected>add<limit>min<count>] }}}/>
+</$let>
+\end
+
+\define action-navigate-home()
+  <$action-setfield
+    $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
+    selected=1/>
+\end
+
+\define action-navigate-end()
+  <$action-setfield
+    $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
+    selected={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results-count}}/>
+\end
+
 \define action-navigate-close()
   <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store" active="0"/>
 \end
@@ -67,12 +101,16 @@ type: text/vnd.tiddlywiki
       results-count={{{ [enlist<results>count[]] }}}
       selected=1
     />
-</$set>
+  </$set>
 </$let>
 \end
 
 <$keyboard key="Down" actions=<<action-navigate-down>>>
 <$keyboard key="Up" actions=<<action-navigate-up>>>
+<$keyboard key="Page_down" actions=<<action-navigate-pagedown>>>
+<$keyboard key="Page_up" actions=<<action-navigate-pageup>>>
+<$keyboard key="Home" actions=<<action-navigate-home>>>
+<$keyboard key="End" actions=<<action-navigate-end>>>
 <$keyboard key="Enter" actions=<<action-navigate-select>>>
 <$keyboard key="Escape" actions=<<action-navigate-close>>>
 <$edit-text
@@ -81,6 +119,10 @@ type: text/vnd.tiddlywiki
   placeholder="Input tiddler name here"
   focus="yes"
   inputActions=<<action-search-changed>>/>
+</$keyboard>
+</$keyboard>
+</$keyboard>
+</$keyboard>
 </$keyboard>
 </$keyboard>
 </$keyboard>
