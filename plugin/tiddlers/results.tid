@@ -3,7 +3,7 @@ type: text/vnd.tiddlywiki
 
 <$set name="results" value={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results}}>
 <$let
-    limit="5"
+    limit={{$:/plugins/EvidentlyCube/GoToShortcut/Config!!rows}}
     halfLimit={{{ [<limit>divide[2]ceil[]] }}}
     count={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results-count}}
     maxOffset={{{ [<count>subtract<limit>] }}}
