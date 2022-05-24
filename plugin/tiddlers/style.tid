@@ -1,3 +1,7 @@
+title: $:/plugins/EvidentlyCube/GoToShortcut/style
+tags: $:/tags/Stylesheet
+type: type: text/css
+
 .ec-goto_modal {
     background: rgba(255, 255, 255, 0.7);
     position: fixed;
@@ -29,25 +33,37 @@
 .ec-goto_modal input {
     width: 100%;
 }
-.ec-goto_modal .rows {
-    height: {{{ [[$:/plugins/EvidentlyCube/GoToShortcut/Config]get[rows]multiply[52]] }}}px
-}
-.ec-goto_modal .row {
-    height: 52px;
-    overflow: hidden;
-    padding: 0.5em 1em;
-}
-.ec-goto_modal .row header {
+  <$let
+    config="$:/plugins/EvidentlyCube/GoToShortcut/Config"
+    rows={{{ [<config>get[rows]max[1]min[99]] }}}
+    row-height={{{ [<config>get[row-height]] }}}
+    is-static={{{ [<config>get[modal-size]compare:string:eq[static]] =[<row-height>compare:string:ne[auto]] +[count[]compare:string:eq[2]then[yes]] }}}
+  >
+
+  <$list filter="[<is-static>compare:string:eq[yes]]">
+    .ec-goto_modal .rows {
+        height: {{{ [<row-height>multiply<rows>] }}}px;
+    }
+  </$list>
+
+  .ec-goto_modal .row {
+      height: {{{ [<row-height>compare:string:eq[auto]] ~[<row-height>addsuffix[px]] }}};
+      overflow: hidden;
+      padding: 0.5em 1em;
+  }
+</$let>
+
+.ec-goto_modal .ec-goto_row header {
     margin: 0;
     font-weight: bold;
     font-size: 1.2em
 }
-.ec-goto_modal .row ul {
+.ec-goto_modal .ec-goto_row ul {
     margin: 0;
     list-style: none;
     opacity: 0.75;
 }
-.ec-goto_modal .row li {
+.ec-goto_modal .ec-goto_row li {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -55,27 +71,27 @@
     line-height: 14px;
     opacity: 0.75;
 }
-.ec-goto_modal .row header {
+.ec-goto_modal .ec-goto_row header {
     display: block;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
-.ec-goto_modal .row .lookup-tags {
+.ec-goto_modal .ec-goto_row .lookup-tags {
     height: 26px;
     display: block;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
-.ec-goto_modal .row .lookup-tags .tc-tag-list-item {
+.ec-goto_modal .ec-goto_row .lookup-tags .tc-tag-list-item {
     margin-right: 0.5em;
 }
 
-.ec-goto_modal .row.selected {
+.ec-goto_modal .ec-goto_row.selected {
     background: #DDF;
 }
-.ec-goto_modal .row:not(.meta):hover {
+.ec-goto_modal .ec-goto_row:not(.meta):hover {
     background: #EEF;
     cursor: pointer;
 }
