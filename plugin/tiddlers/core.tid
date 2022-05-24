@@ -1,80 +1,6 @@
-tags: $:/tags/BelowStory
 title: $:/plugins/EvidentlyCube/GoToShortcut/Core
 type: text/vnd.tiddlywiki
-
-\define tooShort()
-//Search too short.//
-\end
-
-\define action-navigate-up()
-<$let selected={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!selected}} count={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results-count}}>
-  <$action-setfield
-    $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
-    selected={{{ [<selected>subtract[2]add<count>remainder<count>add[1]] }}}/>
-</$let>
-\end
-
-\define action-navigate-down()
-<$let selected={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!selected}} count={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results-count}}>
-  <$action-setfield
-    $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
-    selected={{{ [<selected>remainder<count>add[1]] }}}/>
-</$let>
-\end
-
-\define action-navigate-close()
-  <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store" active="0"/>
-\end
-
-\define action-navigate-select()
-  <$let results={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results}} selected={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!selected}}>
-  <$list filter="[enlist<results>nth<selected>]">
-    <$action-navigate to=<<currentTiddler>> $scroll="yes"/>
-    <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store" active="0"/>
-  </$list>
-  </$let>
-\end
-
-\define action-search-changed(reset:no)
-<$let
-    reset=<<__reset__>>
-    lookupSource={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!lookup}}
-    lookup={{{ [<reset>compare:string:eq[yes]then[]] [<lookupSource>] +[nth[1]] }}}
-    mode={{{ [<lookup>prefix[>*]then[system-deep]]
-             [<lookup>prefix[>]then[system]]
-             [<lookup>prefix[!*]then[all-deep]]
-             [<lookup>prefix[!]then[all]]
-             [<lookup>prefix[*]then[normal-deep]]
-             [[normal]] }}}
-    query={{{ [<lookup>removeprefix[>*]]
-              [<lookup>removeprefix[>]]
-              [<lookup>removeprefix[!*]]
-              [<lookup>removeprefix[!]]
-              [<lookup>removeprefix[*]]
-              [<lookup>] }}}
->
-  <$macrocall $name="action-save-results" mode=<<mode>>  query=<<query>>/>
-</$let>
-
-\end
-
-\define action-save-results(mode query)
-<$let
-    mode=<<__mode__>>
-    header={{{ [<mode>addprefix[header-]] }}}
-    filter-name={{{ [<mode>addprefix[filter-]] }}}
-    query=<<__query__>>
-    filter={{{ [[$:/plugins/EvidentlyCube/GoToShortcut/Config]get<filter-name>] }}}>
-  <$set name="results" filter=<<filter>>>
-    <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
-      header={{{ [[$:/plugins/EvidentlyCube/GoToShortcut/Config]get<header>] }}}
-      results=<<results>>
-      results-count={{{ [enlist<results>count[]] }}}
-      selected=1
-    />
-</$set>
-</$let>
-\end
+tags: $:/tags/BelowStory
 
 <$list filter="[[$:/plugins/EvidentlyCube/GoToShortcut/Store]field:active[1]]">
 <div class="lookup-wrapper">
@@ -85,20 +11,7 @@ type: text/vnd.tiddlywiki
 
 ! <$text text={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!header}} />:
 
-<$keyboard key="Down" actions=<<action-navigate-down>>>
-<$keyboard key="Up" actions=<<action-navigate-up>>>
-<$keyboard key="Enter" actions=<<action-navigate-select>>>
-<$keyboard key="Escape" actions=<<action-navigate-close>>>
-<$edit-text
-  tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
-  field="lookup"
-  placeholder="Input tiddler name here"
-  focus="yes"
-  inputActions=<<action-search-changed>>/>
-</$keyboard>
-</$keyboard>
-</$keyboard>
-</$keyboard>
+{{$:/plugins/EvidentlyCube/GoToShortcut/Input}}
 
 {{$:/plugins/EvidentlyCube/GoToShortcut/Results}}
 

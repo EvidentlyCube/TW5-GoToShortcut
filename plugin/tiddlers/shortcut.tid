@@ -2,13 +2,14 @@ title: $:/plugins/EvidentlyCube/GoToShortcut/KeyboardShortcut
 tags: $:/tags/KeyboardShortcut
 key: ((EC-GoToModal))
 
-<$importvariables filter="[[$:/plugins/EvidentlyCube/GoToShortcut/Core]]">
+<$importvariables filter="[[$:/plugins/EvidentlyCube/GoToShortcut/Input]]">
 <$list filter="[[$:/plugins/EvidentlyCube/GoToShortcut/Store]field:active[1]]" emptyMessage="""
 <$action-setfield
   $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
   active="1"
   lookup=""
 />
+
 <<action-search-changed "yes">>
 
 """>
