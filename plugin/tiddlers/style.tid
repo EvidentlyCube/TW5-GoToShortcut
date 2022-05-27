@@ -33,13 +33,17 @@ type: type: text/css
 .ec-goto_modal input {
     width: 100%;
 }
-  <$let
-    config="$:/plugins/EvidentlyCube/GoToShortcut/Config"
-    rows={{{ [<config>get[rows]max[1]min[99]] }}}
-    row-height={{{ [<config>get[row-height]] }}}
-    is-static={{{ [<config>get[modal-size]compare:string:eq[static]] =[<row-height>compare:string:ne[auto]] +[count[]compare:string:eq[2]then[yes]] }}}
-  >
+.ec-goto_modal .help {
+    text-align: center;
+    margin-bottom: 1em;
+}
 
+<$let
+config="$:/plugins/EvidentlyCube/GoToShortcut/Config"
+rows={{{ [<config>get[rows]max[1]min[99]] }}}
+row-height={{{ [<config>get[row-height]] }}}
+is-static={{{ [<config>get[modal-size]compare:string:eq[static]] =[<row-height>compare:string:ne[auto]] +[count[]compare:string:eq[2]then[yes]] }}}
+>
   <$list filter="[<is-static>compare:string:eq[yes]]">
     .ec-goto_modal .rows {
         height: {{{ [<row-height>multiply<rows>] }}}px;
@@ -53,11 +57,6 @@ type: type: text/css
   }
 </$let>
 
-.ec-goto_modal .ec-goto_row header {
-    margin: 0;
-    font-weight: bold;
-    font-size: 1.2em
-}
 .ec-goto_modal .ec-goto_row ul {
     margin: 0;
     list-style: none;
@@ -72,6 +71,9 @@ type: type: text/css
     opacity: 0.75;
 }
 .ec-goto_modal .ec-goto_row header {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.2em;
     display: block;
     text-overflow: ellipsis;
     white-space: nowrap;
