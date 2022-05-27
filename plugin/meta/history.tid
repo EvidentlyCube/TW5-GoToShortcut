@@ -1,5 +1,6 @@
 title: $:/plugins/EvidentlyCube/GoToShortcut/history
 type: text/vnd.tiddlywiki
 
+* ''0.1.1'' -- Fixed incorrect filters
 * ''0.1.0'' -- Rewritten to not use JS
 * ''0.0.4'' -- First version
