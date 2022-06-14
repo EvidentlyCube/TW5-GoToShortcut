@@ -1,6 +1,6 @@
 title: $:/plugins/EvidentlyCube/GoToShortcut/style
 tags: $:/tags/Stylesheet
-type: type: text/css
+type: text/css
 
 .ec-goto_modal {
     background: rgba(255, 255, 255, 0.7);
