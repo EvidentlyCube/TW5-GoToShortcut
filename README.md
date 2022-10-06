@@ -18,6 +18,12 @@ A very powerful quick search/goto mechanism that you access in a fraction of a s
  ** `Escape` and `Ctr+Shift+P` closes the dialog
  * You can also select the tiddlers with a mouse
 
+## Available customizations:
+
+ * Provide your own filters for the results
+ * Decide if the results are cleared between openings of the modal or not
+ * Use your own template for a result row
+
 ## Demo:
 
 See the demo [here](https://evidentlycube.github.io/TW5-PluginShowcase/#Go%20To%20Shortcut).

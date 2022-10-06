@@ -35,6 +35,18 @@ The keyboard shortcut can be configured in //Keyboard Shortcuts// tab.
 <tbody>
 <tr>
   <td align="center">
+    ''Open mode''<br/>
+    //What should happen with the results when opening the modal//
+  </td>
+  <td>
+    <$select tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Config" field="clear-on-open">
+      <option value="1">Clear results</option>
+      <option value="0">Show last results</option>
+    </$select>
+  </td>
+</tr>
+<tr>
+  <td align="center">
     ''Displayed results''<br/>
     //Maximum number of results to display, must be between 1 and 99//
   </td>

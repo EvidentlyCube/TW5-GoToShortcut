@@ -3,6 +3,7 @@
     "type": "text/vnd.tiddlywiki",
     "rows": "9",
     "row-height": "72",
+	"clear-on-open": "1",
     "modal-size": "static",
     "header-system-deep": "Search in any tiddler",
     "result-row-class": "ec-goto_row",

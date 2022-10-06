@@ -1,8 +1,9 @@
 title: $:/plugins/EvidentlyCube/GoToShortcut/history
 type: text/vnd.tiddlywiki
 
-* ''0.1.2'':
+* ''0.2.0'':
 ** `Home` and `End` keys now affect the text-input rather than navigating the result list; those shortcuts are now `Ctrl+Home` and `Ctrl+End`
+** Added a new option for controlling whether the results are cleared when reopening or not
 * ''0.1.1'' -- Fixed incorrect filters
 * ''0.1.0'' -- Rewritten to not use JS
 * ''0.0.4'' -- First version

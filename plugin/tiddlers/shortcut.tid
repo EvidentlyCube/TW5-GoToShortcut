@@ -3,16 +3,15 @@ tags: $:/tags/KeyboardShortcut
 key: ((EC-GoToModal))
 
 <$importvariables filter="[[$:/plugins/EvidentlyCube/GoToShortcut/Input]]">
-<$list filter="[[$:/plugins/EvidentlyCube/GoToShortcut/Store]field:active[1]]" emptyMessage="""
-<$action-setfield
-  $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
-  active="1"
-  lookup=""
-/>
+<$list filter="[[$:/plugins/EvidentlyCube/GoToShortcut/Store]field:active[0]]" emptyMessage="""
 
-<<action-search-changed "yes">>
+	<$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store" active="0"/>
 
 """>
-<$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store" active="0"/>
+	<$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store" active="1" />
+	<$list filter="[[$:/plugins/EvidentlyCube/GoToShortcut/Config]get[clear-on-open]match[1]]">
+		<$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store" lookup="" />
+		<<action-search-changed "yes">>
+	</$list>
 </$list>
 </$importvariables>
