@@ -123,8 +123,8 @@ type: text/vnd.tiddlywiki
 <$keyboard key="Up" actions=<<action-navigate-up>>>
 <$keyboard key="Page_down" actions=<<action-navigate-pagedown>>>
 <$keyboard key="Page_up" actions=<<action-navigate-pageup>>>
-<$keyboard key="Home" actions=<<action-navigate-home>>>
-<$keyboard key="End" actions=<<action-navigate-end>>>
+<$keyboard key="Ctrl+Home" actions=<<action-navigate-home>>>
+<$keyboard key="Ctrl+End" actions=<<action-navigate-end>>>
 <$keyboard key="Enter" actions=<<action-navigate-select>>>
 <$keyboard key="Escape" actions=<<action-navigate-close>>>
 <$edit-text

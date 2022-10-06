@@ -14,7 +14,7 @@ A very powerful quick search/goto mechanism that you access in a fraction of a s
  ** `Arrow Up` and `Arrow Down` navigate through the results list
  ** `Enter` opens the selected tiddler
  ** `Page Up` and `Page Down` navigate through one page of the results list
- ** `Home` and `End` go directly to the start/end of the results list
+ ** `Ctrl+Home` and `Ctrl+End` go directly to the start/end of the results list
  ** `Escape` and `Ctr+Shift+P` closes the dialog
  * You can also select the tiddlers with a mouse
 
