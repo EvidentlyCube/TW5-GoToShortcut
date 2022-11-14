@@ -1,6 +1,9 @@
 title: $:/plugins/EvidentlyCube/GoToShortcut/history
 type: text/vnd.tiddlywiki
 
+* ''0.2.1'':
+** Colors are now taken from the current palette so that it works with dark ones too
+** Fixed dynamic styles not being executed due to incorrect tiddler type
 * ''0.2.0'':
 ** `Home` and `End` keys now affect the text-input rather than navigating the result list; those shortcuts are now `Ctrl+Home` and `Ctrl+End`
 ** Added a new option for controlling whether the results are cleared when reopening or not

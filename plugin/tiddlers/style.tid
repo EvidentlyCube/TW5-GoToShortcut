@@ -1,9 +1,7 @@
 title: $:/plugins/EvidentlyCube/GoToShortcut/style
 tags: $:/tags/Stylesheet
-type: text/css
 
 .ec-goto_modal {
-    background: rgba(255, 255, 255, 0.7);
     position: fixed;
     right: 0;
     left: 0;
@@ -15,20 +13,23 @@ type: text/css
     z-index: 10000;
 }
 .ec-goto_close {
+    background: <<colour modal-backdrop>>;
+	opacity: 0.75;
     position: fixed;
     left: 0;
     top: 0;
     right: 0;
     bottom: 0;
-    z-index: -1;
 }
 .ec-goto_modal .core {
-    background: white;
+    background: <<colour modal-background>>;
     border: 1px solid black;
     margin: 2em;
     width: 600px;
     padding: 1em;
     box-sizing: border-box;
+	position: relative;
+	z-index: 1;
 }
 .ec-goto_modal input {
     width: 100%;
@@ -92,14 +93,16 @@ is-static={{{ [<config>get[modal-size]compare:string:eq[static]] =[<row-height>c
 }
 
 .ec-goto_modal .ec-goto_row.selected {
-    background: #DDF;
+    background: <<colour tab-background-selected>>;
+    color: <<colour tab-foreground-selected>>;
 }
 .ec-goto_modal .ec-goto_row:not(.meta):hover {
-    background: #EEF;
+    background: <<colour tab-background-selected>>;
+	color: <<colour tab-foreground-selected>>;
     cursor: pointer;
 }
 .ec-goto_modal .row.meta {
-    color: #AAA;
+    color: <<colour muted-foreground>>;
     display: flex;
     align-items: center;
     justify-content: center;
