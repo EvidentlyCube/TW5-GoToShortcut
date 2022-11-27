@@ -1,6 +1,9 @@
 title: $:/plugins/EvidentlyCube/GoToShortcut/history
 type: text/vnd.tiddlywiki
 
+* ''0.3.0'':
+** State for the plugin is no longer stored in `$:/plugins/EvidentlyCube/GoToShortcut/Store` but in `$:/temp/EC-GoToShortcut/Store` as it doesn't need to be stored
+** Selected/hovered option colors are fixed to make it actually possible to see what is selected and what is not
 * ''0.2.1'':
 ** Colors are now taken from the current palette so that it works with dark ones too
 ** Fixed dynamic styles not being executed due to incorrect tiddler type

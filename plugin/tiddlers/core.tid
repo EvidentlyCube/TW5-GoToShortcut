@@ -2,14 +2,14 @@ title: $:/plugins/EvidentlyCube/GoToShortcut/Core
 type: text/vnd.tiddlywiki
 tags: $:/tags/BelowStory
 
-<$list filter="[[$:/plugins/EvidentlyCube/GoToShortcut/Store]field:active[1]]">
+<$list filter="[[$:/temp/EC-GoToShortcut/Store]field:active[1]]">
 <div class="ec-goto_modal">
   <$button tag="div" class="ec-goto_close">
-    <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store" active="0"/>
+    <$action-setfield $tiddler="$:/temp/EC-GoToShortcut/Store" active="0"/>
   </$button>
   <div class="core">
 
-  ! <$text text={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!header}} />:
+  ! <$text text={{$:/temp/EC-GoToShortcut/Store!!header}} />:
 
   {{$:/plugins/EvidentlyCube/GoToShortcut/Input}}
   <div class="help">

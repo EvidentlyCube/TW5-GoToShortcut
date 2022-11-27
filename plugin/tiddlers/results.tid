@@ -1,16 +1,16 @@
 title: $:/plugins/EvidentlyCube/GoToShortcut/Results
 type: text/vnd.tiddlywiki
 
-<$set name="results" value={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results}}>
+<$set name="results" value={{$:/temp/EC-GoToShortcut/Store!!results}}>
 <$let
     limit={{$:/plugins/EvidentlyCube/GoToShortcut/Config!!rows}}
     css-row-class={{$:/plugins/EvidentlyCube/GoToShortcut/Config!!result-row-class}}
     template-base={{$:/plugins/EvidentlyCube/GoToShortcut/Config!!template}}
     template={{{ [<template-base>is[tiddler]else[$:/plugins/EvidentlyCube/GoToShortcut/Template]] }}}
     halfLimit={{{ [<limit>divide[2]ceil[]] }}}
-    count={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results-count}}
+    count={{$:/temp/EC-GoToShortcut/Store!!results-count}}
     maxOffset={{{ [<count>subtract<limit>] }}}
-    selected={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!selected}}
+    selected={{$:/temp/EC-GoToShortcut/Store!!selected}}
     offset={{{ [<selected>subtract<halfLimit>min<maxOffset>max[0]] }}}>
 <div class="row meta">
   <$list filter="[<offset>compare:number:gt[0]]">

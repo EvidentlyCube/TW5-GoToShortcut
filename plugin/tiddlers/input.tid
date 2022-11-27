@@ -2,64 +2,64 @@ title: $:/plugins/EvidentlyCube/GoToShortcut/Input
 type: text/vnd.tiddlywiki
 
 \define action-navigate-up()
-<$let selected={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!selected}} count={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results-count}}>
+<$let selected={{$:/temp/EC-GoToShortcut/Store!!selected}} count={{$:/temp/EC-GoToShortcut/Store!!results-count}}>
   <$action-setfield
-    $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
+    $tiddler="$:/temp/EC-GoToShortcut/Store"
     selected={{{ [<selected>subtract[2]add<count>remainder<count>add[1]] }}}/>
 </$let>
 \end
 
 \define action-navigate-down()
-<$let selected={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!selected}} count={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results-count}}>
+<$let selected={{$:/temp/EC-GoToShortcut/Store!!selected}} count={{$:/temp/EC-GoToShortcut/Store!!results-count}}>
   <$action-setfield
-    $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
+    $tiddler="$:/temp/EC-GoToShortcut/Store"
     selected={{{ [<selected>remainder<count>add[1]] }}}/>
 </$let>
 \end
 
 \define action-navigate-pageup()
 <$let
-    selected={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!selected}}
-    count={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results-count}}
+    selected={{$:/temp/EC-GoToShortcut/Store!!selected}}
+    count={{$:/temp/EC-GoToShortcut/Store!!results-count}}
     limit={{$:/plugins/EvidentlyCube/GoToShortcut/Config!!rows}}>
   <$action-setfield
-    $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
+    $tiddler="$:/temp/EC-GoToShortcut/Store"
     selected={{{ [<selected>compare:number:eq[1]then<count>] ~[<selected>subtract<limit>max[1]] }}}/>
 </$let>
 \end
 
 \define action-navigate-pagedown()
 <$let
-    selected={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!selected}}
-    count={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results-count}}
+    selected={{$:/temp/EC-GoToShortcut/Store!!selected}}
+    count={{$:/temp/EC-GoToShortcut/Store!!results-count}}
     limit={{$:/plugins/EvidentlyCube/GoToShortcut/Config!!rows}}>
   <$action-setfield
-    $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
+    $tiddler="$:/temp/EC-GoToShortcut/Store"
     selected={{{ [<selected>compare:number:eq<count>then[1]] ~[<selected>add<limit>min<count>] }}}/>
 </$let>
 \end
 
 \define action-navigate-home()
   <$action-setfield
-    $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
+    $tiddler="$:/temp/EC-GoToShortcut/Store"
     selected=1/>
 \end
 
 \define action-navigate-end()
   <$action-setfield
-    $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
-    selected={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results-count}}/>
+    $tiddler="$:/temp/EC-GoToShortcut/Store"
+    selected={{$:/temp/EC-GoToShortcut/Store!!results-count}}/>
 \end
 
 \define action-navigate-close()
-  <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store" active="0"/>
+  <$action-setfield $tiddler="$:/temp/EC-GoToShortcut/Store" active="0"/>
 \end
 
 \define action-navigate-select()
-  <$let results={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!results}} selected={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!selected}}>
+  <$let results={{$:/temp/EC-GoToShortcut/Store!!results}} selected={{$:/temp/EC-GoToShortcut/Store!!selected}}>
   <$list filter="[enlist<results>nth<selected>]">
     <$action-navigate to=<<currentTiddler>> $scroll="yes"/>
-    <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store" active="0"/>
+    <$action-setfield $tiddler="$:/temp/EC-GoToShortcut/Store" active="0"/>
   </$list>
   </$let>
 \end
@@ -67,7 +67,7 @@ type: text/vnd.tiddlywiki
 \define action-search-changed(reset:no)
 <$let
     reset=<<__reset__>>
-    lookupSource={{$:/plugins/EvidentlyCube/GoToShortcut/Store!!lookup}}
+    lookupSource={{$:/temp/EC-GoToShortcut/Store!!lookup}}
     lookup={{{ [<reset>compare:string:eq[yes]then[]] [<lookupSource>] +[nth[1]] }}}
     filter-start="["
     mode={{{ [<lookup>prefix<filter-start>then[filter]]
@@ -99,7 +99,7 @@ type: text/vnd.tiddlywiki
 
   <$list filter="[<mode>compare:string:ne[filter]]" emptyMessage="""
     <$set name="results" filter=<<query>>>
-      <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
+      <$action-setfield $tiddler="$:/temp/EC-GoToShortcut/Store"
         header={{{ [[$:/plugins/EvidentlyCube/GoToShortcut/Config]get<header>] }}}
         results=<<results>>
         results-count={{{ [enlist<results>count[]] }}}
@@ -108,7 +108,7 @@ type: text/vnd.tiddlywiki
     </$set>
   """>
   <$set name="results" filter=<<filter>>>
-    <$action-setfield $tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
+    <$action-setfield $tiddler="$:/temp/EC-GoToShortcut/Store"
       header={{{ [[$:/plugins/EvidentlyCube/GoToShortcut/Config]get<header>] }}}
       results=<<results>>
       results-count={{{ [enlist<results>count[]] }}}
@@ -128,7 +128,7 @@ type: text/vnd.tiddlywiki
 <$keyboard key="Enter" actions=<<action-navigate-select>>>
 <$keyboard key="Escape" actions=<<action-navigate-close>>>
 <$edit-text
-  tiddler="$:/plugins/EvidentlyCube/GoToShortcut/Store"
+  tiddler="$:/temp/EC-GoToShortcut/Store"
   field="lookup"
   placeholder="Input tiddler name here"
   focus="yes"
