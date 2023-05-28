@@ -1,5 +1,7 @@
 # Go To Tiddler Shortcut [TiddlyWiki5 Plugin]
 
+> :warning: **This repository has been moved**: To make development easier this plugin's code was moved to [EvidentlyCube/TW5-PluginShowcase](https://github.com/EvidentlyCube/TW5-PluginShowcase/tree/main), specifically [here](https://github.com/EvidentlyCube/TW5-PluginShowcase/tree/main/plugins/EvidentlyCube/TW5-GoToShortcut) .
+
 A very powerful quick search/goto mechanism that you access in a fraction of a second fully through the keyboard!
 
  * Access the Goto modal with a configurable keyboard shortcut (defaults to `Ctrl+Shift+P`)
